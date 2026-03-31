@@ -38,59 +38,35 @@ npx weixincli claude
 
 如果当前还没有微信登录状态，CLI 会自动进入扫码登录流程。
 
-在微信里可用的命令：
+## 运行流程
 
 ```text
-/help
-/codex
-/codex Fix the failing test in this repo
-/claude
-/claude Review this change
-/cd ..
-/cd E:\PostGraduateFile\code\repo
-/pwd
-/sessions
-/sessions codex
-/sessions claude
-/plan
-/do
-/undo
-/unplan
-/resume latest
-/resume 8ffd4196-fcdb-47fa-bb31-aebd35c6e435
-/resume codex 8ffd4196-fcdb-47fa-bb31-aebd35c6e435
-/resume claude latest
+微信消息
+  -> weixincli
+  -> 当前聊天路由
+  -> codex-acp / claude-agent-acp
+  -> 响应回到微信
 ```
 
-行为说明：
+## 微信命令与行为
 
-- `/help`：查看当前微信侧支持的命令。
+- 普通消息：发送到当前聊天绑定的模型。
+- 启动命令：决定尚未切换过的聊天默认使用哪个模型。
+- `/help`：查看当前微信侧支持的命令说明。
 - `/codex` 和 `/claude`：把当前聊天切换到指定模型。
 - `/codex <message>` 和 `/claude <message>`：先切模型，再立即转发消息。
 - `/cd <path>`：修改当前微信会话的工作目录。
 - `/pwd`：查看当前微信会话的工作目录。
 - `/sessions`：查看当前模型最近 5 个会话。
 - `/sessions codex` 和 `/sessions claude`：查看指定模型最近 5 个会话，但不切换当前聊天路由。
-- `/plan`：让当前模型进入规划模式。Claude 使用原生 ACP plan mode；Codex 使用软规划流程，先返回计划再等待确认。
+- `/plan`：让当前模型进入规划模式。Claude 使用原生 ACP `plan` mode；Codex 使用软规划流程，先返回计划再等待确认。
 - `/do`：执行当前聊天里待确认的计划。
 - `/undo`：丢弃当前聊天里待确认的计划。
 - `/unplan`：把当前模型切回 `default` 模式。
-- 当聊天处于 `plan` 模式时，计划会先回发到微信，再等待 `/do` 或 `/undo`。
-- `/resume latest`：显式恢复当前工作目录下该模型最近一次会话。
-- `/resume <sessionId>`：显式恢复当前模型的指定会话 ID。
+- `plan` 模式：计划会先回发到微信，再等待 `/do` 或 `/undo`。
+- `/resume latest`：恢复当前工作目录下当前模型最近一次会话。
+- `/resume <sessionId>`：恢复当前模型的指定会话 ID。
 - `/resume codex <sessionId>` 和 `/resume claude <sessionId>`：恢复指定模型会话，并把当前聊天切到该模型。
 - `/resume codex latest` 和 `/resume claude latest`：恢复指定模型在当前工作目录下最近一次会话，并切换当前聊天。
-- 普通消息会发送到当前聊天绑定的模型。
-- 启动命令会决定尚未切换过的聊天默认使用哪个模型。
-- Codex 和 Claude 会分别为每个微信会话维护各自独立的 ACP 会话。
 - 使用 `npx weixincli codex resume <sessionId>` 或 `npx weixincli claude resume <sessionId>` 启动时，会在默认模型首次被使用时恢复指定会话。
-
-## 开发
-
-在这个 monorepo 中执行：
-
-```bash
-pnpm install
-pnpm --filter weixincli test
-pnpm --filter weixincli build
-```
+- 会话隔离：Codex 和 Claude 会分别为每个微信会话维护各自独立的 ACP 会话。
