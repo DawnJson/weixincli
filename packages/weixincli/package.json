@@ -52,7 +52,7 @@
   },
   "scripts": {
     "build": "tsdown",
-    "prepublishOnly": "pnpm run build",
+    "prepublishOnly": "npm run build",
     "pretest": "corepack pnpm --filter weixincli build",
     "test": "node test/router-agent.test.js",
     "typecheck": "tsc --noEmit"
