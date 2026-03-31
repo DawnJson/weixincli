@@ -20,15 +20,15 @@ async function ensureLoggedIn() {
 }
 
 function printUsage() {
-  console.log(`weixincli - WeChat router for Codex and Claude
+  console.log(`weixin-router - WeChat router for Codex and Claude
 
 Usage:
-  npx weixincli login
-  npx weixincli logout
-  npx weixincli codex
-  npx weixincli codex resume <sessionId>
-  npx weixincli claude
-  npx weixincli claude resume <sessionId>
+  npx weixin-router login
+  npx weixin-router logout
+  npx weixin-router codex
+  npx weixin-router codex resume <sessionId>
+  npx weixin-router claude
+  npx weixin-router claude resume <sessionId>
 
 WeChat commands:
   /help
@@ -93,7 +93,7 @@ async function main() {
     const wantsResume = commandArgs[0]?.toLowerCase() === "resume";
     if (wantsResume && !commandArgs[1]) {
       throw new Error(
-        `Startup resume requires an explicit session id.\nUsage: npx weixincli ${defaultModel} resume <sessionId>`,
+        `Startup resume requires an explicit session id.\nUsage: npx weixin-router ${defaultModel} resume <sessionId>`,
       );
     }
     await startRouter(defaultModel, wantsResume ? commandArgs[1] : undefined);

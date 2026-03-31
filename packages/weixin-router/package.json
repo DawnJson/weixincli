@@ -1,11 +1,11 @@
 {
-  "name": "weixincli",
+  "name": "weixin-router",
   "version": "0.1.0",
   "description": "WeChat router for Codex and Claude ACP agents",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "weixincli": "dist/main.mjs"
+    "weixin-router": "dist/main.mjs"
   },
   "main": "dist/index.mjs",
   "types": "dist/index.d.mts",
@@ -53,7 +53,7 @@
   "scripts": {
     "build": "tsdown",
     "prepublishOnly": "npm run build",
-    "pretest": "corepack pnpm --filter weixincli build",
+    "pretest": "corepack pnpm --filter weixin-router build",
     "test": "node test/router-agent.test.js",
     "typecheck": "tsc --noEmit"
   },

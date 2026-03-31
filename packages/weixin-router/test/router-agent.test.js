@@ -123,7 +123,7 @@ function testBuiltinCommandsResolveFromInstalledPackages() {
 }
 
 async function testPwdAndCdCommandsTrackConversationWorkingDirectory() {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "weixincli-router-"));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "weixin-router-"));
   const nestedDir = path.join(tempRoot, "nested");
   fs.mkdirSync(nestedDir);
 
@@ -149,7 +149,7 @@ async function testPwdAndCdCommandsTrackConversationWorkingDirectory() {
 }
 
 async function testCdRejectsMissingDirectories() {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "weixincli-router-"));
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "weixin-router-"));
   const { router } = createRouter("codex", { cwd: tempRoot });
 
   const response = await router.chat({

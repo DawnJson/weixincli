@@ -29,7 +29,7 @@ async function sendReply(ctx: SlashCommandContext, text: string): Promise<void> 
 
 function getHelpText(): string {
   return [
-    "weixincli 命令",
+    "weixin-router 命令",
     "",
     "模型切换",
     "- /codex：把当前聊天切到 Codex",

@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "weixincli": "workspace:*"
+    "weixin-router": "workspace:*"
   },
   "scripts": {
     "typecheck": "pnpm -r run typecheck"

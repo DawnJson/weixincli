@@ -211,7 +211,7 @@ export class AcpConnection {
     log("initializing connection...");
     const initializeResponse = await conn.initialize({
       protocolVersion: PROTOCOL_VERSION,
-      clientInfo: { name: "weixincli", version: "0.1.0" },
+      clientInfo: { name: "weixin-router", version: "0.1.0" },
       clientCapabilities: {},
     });
     this.agentCapabilities = initializeResponse.agentCapabilities;
