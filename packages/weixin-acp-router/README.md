@@ -59,11 +59,14 @@ npx weixin-acp-router claude
 - `/pwd`：查看当前微信会话的工作目录。
 - `/sessions`：查看当前模型最近 5 个会话。
 - `/sessions codex` 和 `/sessions claude`：查看指定模型最近 5 个会话，但不切换当前聊天路由。
-- `/plan`：让当前模型进入规划模式。Claude 使用原生 ACP `plan` mode；Codex 使用软规划流程，先返回计划再等待确认。
+- `/plan`：让当前模型进入规划模式。
+- `Claude` 的 `/plan`：使用官方 ACP 原生 `plan` mode。模型会先进入规划态，产出计划后，微信侧会收到计划内容；只有用户回复 `/do` 后才会继续执行，回复 `/undo` 则放弃本次计划。
+- `Codex` 的 `/plan`：不是官方 ACP 原生 `plan` mode，而是项目内实现的软规划流程。模型会先按普通对话产出一份计划，系统把这份计划缓存为“待确认计划”，然后回发到微信，等待用户决定。
 - `/do`：执行当前聊天里待确认的计划。
 - `/undo`：丢弃当前聊天里待确认的计划。
 - `/unplan`：把当前模型切回 `default` 模式。
-- `plan` 模式：计划会先回发到微信，再等待 `/do` 或 `/undo`。
+- `plan` 许可流程：无论当前是 Claude 还是 Codex，计划都不会在回发后立刻执行；必须由用户在微信里显式回复 `/do` 才会开始执行，回复 `/undo` 则直接取消。
+- `plan` 结束方式：执行完 `/do` 后，会话会回到普通执行流程；如果只想退出规划态而不执行，可以用 `/undo` 或 `/unplan`。
 - `/resume latest`：恢复当前工作目录下当前模型最近一次会话。
 - `/resume <sessionId>`：恢复当前模型的指定会话 ID。
 - `/resume codex <sessionId>` 和 `/resume claude <sessionId>`：恢复指定模型会话，并把当前聊天切到该模型。
