@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "dependencies": {
+    "weixincli": "workspace:*"
+  },
+  "scripts": {
+    "typecheck": "pnpm -r run typecheck"
+  }
+}

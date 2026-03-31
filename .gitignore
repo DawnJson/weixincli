@@ -1,0 +1,12 @@
+node_modules/
+packages/*/node_modules/
+.pnpm-store/
+
+dist/
+packages/*/dist/
+
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+.DS_Store
