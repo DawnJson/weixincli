@@ -8,11 +8,11 @@ importers:
 
   .:
     dependencies:
-      weixin-router:
+      weixin-acp-router:
         specifier: workspace:*
-        version: link:packages/weixin-router
+        version: link:packages/weixin-acp-router
 
-  packages/weixin-router:
+  packages/weixin-acp-router:
     dependencies:
       '@agentclientprotocol/sdk':
         specifier: ^0.17.0

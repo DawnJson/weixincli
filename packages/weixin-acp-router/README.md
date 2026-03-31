@@ -1,4 +1,4 @@
-# weixin-router
+# weixin-acp-router
 
 仓库地址：`https://github.com/DawnJson/weixincli`
 问题反馈：`https://github.com/DawnJson/weixincli/issues`
@@ -15,16 +15,16 @@
 ## 安装
 
 ```bash
-npm install -g weixin-router
+npm install -g weixin-acp-router
 ```
 
 或者在发布后直接运行：
 
 ```bash
-npx weixin-router codex
-npx weixin-router codex resume <sessionId>
-npx weixin-router claude
-npx weixin-router claude resume <sessionId>
+npx weixin-acp-router codex
+npx weixin-acp-router codex resume <sessionId>
+npx weixin-acp-router claude
+npx weixin-acp-router claude resume <sessionId>
 ```
 
 ## 用法
@@ -32,8 +32,8 @@ npx weixin-router claude resume <sessionId>
 先选一个默认模型启动：
 
 ```bash
-npx weixin-router codex
-npx weixin-router claude
+npx weixin-acp-router codex
+npx weixin-acp-router claude
 ```
 
 如果当前还没有微信登录状态，CLI 会自动进入扫码登录流程。
@@ -42,7 +42,7 @@ npx weixin-router claude
 
 ```text
 微信消息
-  -> weixin-router
+  -> weixin-acp-router
   -> 当前聊天路由
   -> codex-acp / claude-agent-acp
   -> 响应回到微信
@@ -68,5 +68,5 @@ npx weixin-router claude
 - `/resume <sessionId>`：恢复当前模型的指定会话 ID。
 - `/resume codex <sessionId>` 和 `/resume claude <sessionId>`：恢复指定模型会话，并把当前聊天切到该模型。
 - `/resume codex latest` 和 `/resume claude latest`：恢复指定模型在当前工作目录下最近一次会话，并切换当前聊天。
-- 使用 `npx weixin-router codex resume <sessionId>` 或 `npx weixin-router claude resume <sessionId>` 启动时，会在默认模型首次被使用时恢复指定会话。
+- 使用 `npx weixin-acp-router codex resume <sessionId>` 或 `npx weixin-acp-router claude resume <sessionId>` 启动时，会在默认模型首次被使用时恢复指定会话。
 - 会话隔离：Codex 和 Claude 会分别为每个微信会话维护各自独立的 ACP 会话。

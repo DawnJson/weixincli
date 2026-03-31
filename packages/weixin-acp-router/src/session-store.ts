@@ -15,7 +15,7 @@ type SessionStoreData = {
   version: 1;
 };
 
-const STORE_FILE_PATH = path.join(resolveStateDir(), "weixin-router", "session-store.json");
+const STORE_FILE_PATH = path.join(resolveStateDir(), "weixin-acp-router", "session-store.json");
 
 function createEmptyStore(): SessionStoreData {
   return {

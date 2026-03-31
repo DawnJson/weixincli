@@ -1,4 +1,4 @@
-# weixin-router
+# weixin-acp-router
 
 仓库地址：`https://github.com/DawnJson/weixincli`
 问题反馈：`https://github.com/DawnJson/weixincli/issues`
@@ -9,7 +9,7 @@
 
 ```text
 packages/
-  weixin-router/
+  weixin-acp-router/
     main.ts                 CLI 入口
     src/
       router-agent.ts       会话路由、命令分发、模型切换
@@ -19,7 +19,7 @@ packages/
         weixin-agent-sdk/   微信接入层
 ```
 
-原来的 `packages/sdk` 和 `packages/weixin-acp` 代码已经内置到 `packages/weixin-router/src/vendor`，因此当前项目不再依赖这些本地工作区包。
+原来的 `packages/sdk` 和 `packages/weixin-acp` 代码已经内置到 `packages/weixin-acp-router/src/vendor`，因此当前项目不再依赖这些本地工作区包。
 
 ```mermaid
 flowchart LR
@@ -34,9 +34,9 @@ flowchart LR
   H --> I
 ```
 
-## weixin-router
+## weixin-acp-router
 
-`weixin-router` 会启动一个微信 Bot 进程，并接入两个 ACP 后端：
+`weixin-acp-router` 会启动一个微信 Bot 进程，并接入两个 ACP 后端：
 
 - `codex` -> `codex-acp`
 - `claude` -> `claude-agent-acp`
@@ -44,10 +44,10 @@ flowchart LR
 按你希望的默认模型启动：
 
 ```bash
-npx weixin-router codex
-npx weixin-router codex resume <sessionId>
-npx weixin-router claude
-npx weixin-router claude resume <sessionId>
+npx weixin-acp-router codex
+npx weixin-acp-router codex resume <sessionId>
+npx weixin-acp-router claude
+npx weixin-acp-router claude resume <sessionId>
 ```
 
 ## 微信命令与行为
@@ -70,5 +70,5 @@ npx weixin-router claude resume <sessionId>
 - `/resume <sessionId>`：恢复当前模型的指定会话 ID。
 - `/resume codex <sessionId>` 和 `/resume claude <sessionId>`：恢复指定模型会话，并把当前聊天切到该模型。
 - `/resume codex latest` 和 `/resume claude latest`：恢复指定模型在当前工作目录下最近一次会话，并切换当前聊天。
-- 使用 `npx weixin-router codex resume <sessionId>` 或 `npx weixin-router claude resume <sessionId>` 启动时，会在默认模型首次被使用时恢复指定会话。
+- 使用 `npx weixin-acp-router codex resume <sessionId>` 或 `npx weixin-acp-router claude resume <sessionId>` 启动时，会在默认模型首次被使用时恢复指定会话。
 - 会话隔离：Codex 和 Claude 会分别为每个微信会话维护各自独立的 ACP 会话。

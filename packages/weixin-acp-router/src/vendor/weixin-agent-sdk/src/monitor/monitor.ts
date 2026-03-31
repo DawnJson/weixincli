@@ -106,7 +106,7 @@ export async function monitorWeixinProvider(opts: MonitorWeixinOpts): Promise<vo
           pauseSession(accountId);
           const pauseMs = getRemainingPauseMs(accountId);
           errLog(
-            `[weixin] session expired (errcode ${SESSION_EXPIRED_ERRCODE}), pausing for ${Math.ceil(pauseMs / 60_000)} min. Please run \`npx weixin-router login\` to re-login.`,
+            `[weixin] session expired (errcode ${SESSION_EXPIRED_ERRCODE}), pausing for ${Math.ceil(pauseMs / 60_000)} min. Please run \`npx weixin-acp-router login\` to re-login.`,
           );
           consecutiveFailures = 0;
           await sleep(pauseMs, abortSignal);
